@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CheckCircle, Zap, Users, Lightbulb, FilePlus2, Mail, Phone, ScrollText, ShieldAlert } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
-import Image from "next/image";
+import Image from "next/image"; // Keep Image import if used elsewhere, though not for this specific change.
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Added for the new content block
 
 export default function HomePage() {
   return (
@@ -37,20 +38,37 @@ export default function HomePage() {
                   </Button>
                 </div>
               </div>
-              <Image
-                src="https://placehold.co/600x400.png"
-                width="600"
-                height="400"
-                alt="Form Collaboration"
-                data-ai-hint="corporate team"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square shadow-xl"
-              />
+              {/* Replaced Image with a content block */}
+              <div className="mx-auto sm:w-full lg:order-last flex flex-col justify-center space-y-4 rounded-xl bg-card p-6 md:p-8 shadow-xl border">
+                <h3 className="text-2xl font-bold font-headline text-primary text-center mb-2 md:mb-4">
+                  Why Choose FormFlow?
+                </h3>
+                <div className="space-y-3 md:space-y-4 text-foreground/80">
+                  <div className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-accent mr-2.5 mt-1 shrink-0" />
+                    <p><span className="font-semibold">Efficiency:</span> Streamline data collection and save valuable time for your team.</p>
+                  </div>
+                  <div className="flex items-start">
+                    <Lightbulb className="h-5 w-5 text-accent mr-2.5 mt-1 shrink-0" />
+                    <p><span className="font-semibold">Insights:</span> Leverage AI to uncover trends and understand your data deeply.</p>
+                  </div>
+                  <div className="flex items-start">
+                    <Users className="h-5 w-5 text-accent mr-2.5 mt-1 shrink-0" />
+                    <p><span className="font-semibold">Collaboration:</span> Work seamlessly with your team on forms in real-time.</p>
+                  </div>
+                </div>
+                <div className="mt-4 md:mt-6 text-center">
+                  <Button asChild variant="outline" size="sm" className="hover:shadow-md transition-shadow">
+                    <Link href="/#key-features">Explore Features</Link>
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Features Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/50">
+        <section id="key-features" className="w-full py-12 md:py-24 lg:py-32 bg-muted/50">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
