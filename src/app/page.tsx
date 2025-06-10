@@ -1,6 +1,7 @@
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { CheckCircle, Zap, Users, Lightbulb, FilePlus2 } from "lucide-react";
+import { CheckCircle, Zap, Users, Lightbulb, FilePlus2, Mail, Phone } from "lucide-react"; // Added Mail and Phone icons
 import { Navbar } from "@/components/layout/Navbar";
 import Image from "next/image";
 
@@ -109,14 +110,31 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
 
 function Footer() {
   return (
-    <footer className="py-6 md:py-8 border-t bg-background">
-      <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
-        <p className="text-sm text-foreground/60">
-          &copy; {new Date().getFullYear()} FormFlow. All rights reserved.
-        </p>
-        <div className="flex gap-4">
-          <Link href="#" className="text-sm hover:text-primary transition-colors">Privacy Policy</Link>
-          <Link href="#" className="text-sm hover:text-primary transition-colors">Terms of Service</Link>
+    <footer className="py-8 md:py-12 border-t bg-background">
+      <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-foreground/70">
+        <div>
+          <h4 className="font-semibold text-foreground mb-2">FormFlow</h4>
+          <p>&copy; {new Date().getFullYear()} FormFlow. All rights reserved.</p>
+        </div>
+        <div>
+          <h4 className="font-semibold text-foreground mb-2">Legal</h4>
+          <ul className="space-y-1">
+            <li><Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
+            <li><Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-semibold text-foreground mb-2">Contact Us</h4>
+          <ul className="space-y-1">
+            <li className="flex items-center">
+              <Mail className="mr-2 h-4 w-4 text-primary" />
+              <a href="mailto:ksood2004@gmail.com" className="hover:text-primary transition-colors">ksood2004@gmail.com</a>
+            </li>
+            <li className="flex items-center">
+              <Phone className="mr-2 h-4 w-4 text-primary" />
+              <a href="tel:+917011795472" className="hover:text-primary transition-colors">7011795472</a>
+            </li>
+          </ul>
         </div>
       </div>
     </footer>
