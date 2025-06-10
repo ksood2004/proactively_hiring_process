@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { CheckCircle, Zap, Users, Lightbulb, FilePlus2, Mail, Phone, ScrollText, ShieldAlert, FileEdit, Share2, Database, TrendingUp, BookOpen, Building } from "lucide-react";
+import { CheckCircle, Zap, Users, Lightbulb, FilePlus2, Mail, Phone, ScrollText, ShieldAlert, FileEdit, Share2, Database, TrendingUp, BookOpen, Building, CircleCheckBig } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -44,7 +44,7 @@ export default function HomePage() {
                 </h3>
                 <div className="space-y-3 md:space-y-4 text-foreground/80">
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-accent mr-2.5 mt-1 shrink-0" />
+                    <CircleCheckBig className="h-5 w-5 text-accent mr-2.5 mt-1 shrink-0" />
                     <p><span className="font-semibold">Efficiency:</span> Streamline data collection and save valuable time for your team.</p>
                   </div>
                   <div className="flex items-start">
@@ -169,8 +169,8 @@ export default function HomePage() {
                   src="https://placehold.co/500x350.png"
                   width={500}
                   height={350}
-                  alt="Our Team Working"
-                  data-ai-hint="diverse team collaboration"
+                  alt="Corporate image for Our Story section"
+                  data-ai-hint="corporate"
                   className="mx-auto aspect-[4/3] overflow-hidden rounded-xl object-cover object-center sm:w-full shadow-lg"
                 />
               </div>
@@ -234,3 +234,5 @@ function Footer() {
     </footer>
   );
 }
+
+    
