@@ -1,10 +1,10 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { CheckCircle, Zap, Users, Lightbulb, FilePlus2, Mail, Phone, ScrollText, ShieldAlert, FileEdit, Share2, Database, TrendingUp, BookOpen, Building, CircleCheckBig } from "lucide-react";
+import { CheckCircle, Zap, Users, Lightbulb, FilePlus2, Mail, Phone, ScrollText, ShieldAlert, FileEdit, Share2, Database, TrendingUp, BookOpen, Building, CircleCheckBig, Briefcase } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 
 export default function HomePage() {
   return (
@@ -143,35 +143,46 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Our Story Section */}
-        <section id="about-us" className="w-full py-12 md:py-24 lg:py-32 bg-muted/50">
+        {/* Careers With Us Section */}
+        <section id="careers" className="w-full py-12 md:py-24 lg:py-32 bg-muted/50">
           <div className="container px-4 md:px-6">
-            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
               <div className="space-y-4">
                 <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary font-medium">
-                  Our Story
+                  <Briefcase className="inline-block h-4 w-4 mr-1 mb-0.5" /> Careers With Us
                 </div>
                 <h2 className="text-3xl font-bold font-headline tracking-tighter sm:text-4xl md:text-5xl">
-                  Empowering Data Collection
+                  Join Our Innovative Team
                 </h2>
                 <p className="max-w-[700px] text-foreground/70 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  At FormFlow, we believe that collecting data should be simple, intelligent, and collaborative. We started with a vision to transform how individuals and businesses gather information, moving beyond clunky spreadsheets and cumbersome tools.
+                  At FormFlow, we're passionate about revolutionizing data collection and collaboration. We foster a dynamic and inclusive environment where creativity and innovation thrive. If you're looking to make an impact and grow with a forward-thinking company, explore our open positions.
                 </p>
                 <p className="max-w-[700px] text-foreground/70 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Our platform is built on the principles of user-friendliness, powerful AI capabilities, and seamless teamwork. We are passionate about helping you unlock the potential in your data, making every response count.
+                  We value teamwork, continuous learning, and a commitment to excellence. Join us in shaping the future of forms!
                 </p>
                  <Button asChild variant="outline">
-                  <Link href="/contact">Learn More About Us</Link>
+                  <Link href="#job-openings-list">View Open Positions</Link>
                 </Button>
               </div>
-              <div className="flex justify-center">
-                <Image
-                  src="https://placehold.co/500x350.png"
-                  width={500}
-                  height={350}
-                  alt="Corporate image for Our Story section"
-                  data-ai-hint="corporate"
-                  className="mx-auto aspect-[4/3] overflow-hidden rounded-xl object-cover object-center sm:w-full shadow-lg"
+              <div id="job-openings-list" className="space-y-6">
+                <h3 className="text-2xl font-bold font-headline text-center lg:text-left mb-6">Current Openings</h3>
+                <JobOpeningCard
+                  title="Senior Software Engineer"
+                  department="Engineering"
+                  location="Headquarters"
+                  description="Lead the development of core FormFlow features, mentor junior engineers, and drive technical excellence. Expertise in Next.js, React, and Genkit required."
+                />
+                <JobOpeningCard
+                  title="Product Manager - AI"
+                  department="Product"
+                  location="Headquarters"
+                  description="Define and execute the product strategy for AI-driven features within FormFlow. Collaborate with design and engineering to deliver impactful solutions."
+                />
+                <JobOpeningCard
+                  title="Marketing Specialist"
+                  department="Marketing"
+                  location="Remote"
+                  description="Develop and implement marketing campaigns to grow FormFlow's user base. Strong skills in digital marketing, content creation, and analytics needed."
                 />
               </div>
             </div>
@@ -199,6 +210,35 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
       <h3 className="text-xl font-bold font-headline mb-2">{title}</h3>
       <p className="text-sm text-foreground/70">{description}</p>
     </div>
+  );
+}
+
+interface JobOpeningCardProps {
+  title: string;
+  department: string;
+  location: string;
+  description: string;
+}
+
+function JobOpeningCard({ title, department, location, description }: JobOpeningCardProps) {
+  return (
+    <Card className="shadow-lg hover:shadow-xl transition-shadow">
+      <CardHeader>
+        <CardTitle className="font-headline text-xl">{title}</CardTitle>
+        <CardDescription>
+          <Building className="inline-block h-4 w-4 mr-1 text-muted-foreground" /> {department} | {location}
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm text-foreground/80">{description}</p>
+      </CardContent>
+      <CardFooter>
+        <Button asChild variant="secondary" className="shadow-sm hover:shadow-md">
+          {/* In a real app, this would link to a specific job application page */}
+          <Link href="#">Apply Now</Link>
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }
 
@@ -234,5 +274,4 @@ function Footer() {
     </footer>
   );
 }
-
     
