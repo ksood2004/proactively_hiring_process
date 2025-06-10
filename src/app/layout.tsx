@@ -1,11 +1,12 @@
 
 import type { Metadata } from 'next';
 import { Inter, Source_Code_Pro } from 'next/font/google';
+import Script from 'next/script'; // Import Script component
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import { ThemeProvider } from '@/contexts/ThemeContext'; // Import ThemeProvider
+import { ThemeProvider } from '@/contexts/ThemeContext';
 
 // Using next/font for better performance and avoiding layout shifts
 const inter = Inter({
@@ -38,13 +39,28 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <AuthProvider>
-          <ThemeProvider> {/* Wrap with ThemeProvider */}
+          <ThemeProvider>
             <TooltipProvider>
+              <div id="google_translate_element" style={{ position: 'fixed', bottom: '1rem', right: '1rem', zIndex: 1000 }}></div>
               {children}
               <Toaster />
             </TooltipProvider>
           </ThemeProvider>
         </AuthProvider>
+
+        <Script id="google-translate-init" strategy="afterInteractive">
+          {`
+            function googleTranslateElementInit() {
+              if (typeof google !== 'undefined' && google.translate && google.translate.TranslateElement) {
+                new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+              }
+            }
+          `}
+        </Script>
+        <Script
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
