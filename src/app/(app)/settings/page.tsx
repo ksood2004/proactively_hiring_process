@@ -15,9 +15,9 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 
 export default function SettingsPage() {
-  const { user, logout } = useAuth(); // Added logout
+  const { user, logout } = useAuth(); 
   const { toast } = useToast();
-  const router = useRouter(); // Added for logout redirect
+  const router = useRouter(); 
 
   // Profile States
   const [displayName, setDisplayName] = useState(user?.displayName || "");
