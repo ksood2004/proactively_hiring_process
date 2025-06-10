@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react"; // Added useEffect
+import { useState, useEffect } from "react"; 
 import { useRouter } from "next/navigation"; 
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
@@ -10,10 +10,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Switch } from "@/components/ui/switch";
-import { Settings, UserCircle, Save, LockKeyhole, LogOut, Bell, Mail, Palette, Languages } from "lucide-react";
+import { Settings, UserCircle, Save, LockKeyhole, LogOut, Bell, Mail, Palette } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
-import { useTheme } from "@/contexts/ThemeContext"; // Import useTheme
+import { useTheme } from "@/contexts/ThemeContext"; 
 import {
   Select,
   SelectContent,
@@ -26,7 +26,7 @@ export default function SettingsPage() {
   const { user, logout } = useAuth(); 
   const { toast } = useToast();
   const router = useRouter(); 
-  const { theme, setTheme } = useTheme(); // Use theme context
+  const { theme, setTheme } = useTheme(); 
 
   // Profile States
   const [displayName, setDisplayName] = useState(user?.displayName || "");
@@ -36,26 +36,10 @@ export default function SettingsPage() {
   const [emailOnNewResponse, setEmailOnNewResponse] = useState(true);
   const [emailOnAIInsight, setEmailOnAIInsight] = useState(false);
   
-  // Language State - initialize from localStorage if available, or default
-  const [language, setLanguage] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('language') || 'en';
-    }
-    return 'en';
-  });
-
-  // Persist language to localStorage
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('language', language);
-    }
-  }, [language]);
-
-
   const handleSaveSettings = (e: React.FormEvent) => {
     e.preventDefault();
     // Mock save action
-    console.log("Saving settings:", { displayName, email, emailOnNewResponse, emailOnAIInsight, selectedTheme: theme, language });
+    console.log("Saving settings:", { displayName, email, emailOnNewResponse, emailOnAIInsight, selectedTheme: theme });
     toast({ title: "Settings Saved", description: "Your profile and preferences have been updated." });
   };
 
@@ -100,7 +84,7 @@ export default function SettingsPage() {
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle className="text-xl font-headline">Account Information</CardTitle>
-                <CardDescription>Update your display name and preferred language.</CardDescription>
+                <CardDescription>Update your display name.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-1">
@@ -111,29 +95,6 @@ export default function SettingsPage() {
                   <Label htmlFor="email">Email Address</Label>
                   <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled />
                   <p className="text-xs text-muted-foreground">Email address cannot be changed here for this demo.</p>
-                </div>
-                <div className="space-y-1">
-                  <Label htmlFor="language" className="flex items-center"><Languages className="mr-2 h-4 w-4 text-muted-foreground"/> Language</Label>
-                  <Select value={language} onValueChange={setLanguage}>
-                    <SelectTrigger id="language">
-                      <SelectValue placeholder="Select language" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="en">English</SelectItem>
-                      <SelectItem value="es">Español (Spanish)</SelectItem>
-                      <SelectItem value="fr">Français (French)</SelectItem>
-                      <SelectItem value="de">Deutsch (German)</SelectItem>
-                      <SelectItem value="ja">日本語 (Japanese)</SelectItem>
-                      <SelectItem value="zh">中文 (Chinese)</SelectItem>
-                      <SelectItem value="hi">हिन्दी (Hindi)</SelectItem>
-                      <SelectItem value="pt">Português (Portuguese)</SelectItem>
-                      <SelectItem value="ru">Русский (Russian)</SelectItem>
-                      <SelectItem value="ar">العربية (Arabic)</SelectItem>
-                    </SelectContent>
-                  </Select>
-                   <p className="text-xs text-muted-foreground">
-                    Select your preferred language. Note: This setting is for future native translation support. The application interface will not change based on this selection yet.
-                   </p>
                 </div>
               </CardContent>
             </Card>
