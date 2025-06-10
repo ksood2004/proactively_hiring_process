@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { CheckCircle, Zap, Users, Lightbulb, FilePlus2, Mail, Phone } from "lucide-react"; // Added Mail and Phone icons
+import { CheckCircle, Zap, Users, Lightbulb, FilePlus2, Mail, Phone, ScrollText, ShieldAlert } from "lucide-react"; // Added ScrollText and ShieldAlert
 import { Navbar } from "@/components/layout/Navbar";
 import Image from "next/image";
 
@@ -119,8 +119,8 @@ function Footer() {
         <div>
           <h4 className="font-semibold text-foreground mb-2">Legal</h4>
           <ul className="space-y-1">
-            <li><Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
-            <li><Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link></li>
+            <li><Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
+            <li><Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link></li>
           </ul>
         </div>
         <div>
