@@ -4,56 +4,51 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Form } from "@/types";
-import { FilePlus2, Edit3, Eye, BarChartBig, Users, Trash2 } from "lucide-react";
+import { FilePlus2, Edit3, Eye, BarChartBig, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
-// Mock forms data
-const mockForms: Form[] = [
-  {
-    id: "form-1",
-    title: "Customer Feedback Survey",
-    description: "Gather feedback from our valued customers.",
-    fields: [],
-    createdBy: "user-1",
-    createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), // 2 days ago
-    updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-    responseCount: 75,
-  },
-  {
-    id: "form-2",
-    title: "Employee Satisfaction Poll",
-    description: "Understand employee morale and identify areas for improvement.",
-    fields: [],
-    createdBy: "user-1",
-    createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(), // 5 days ago
-    updatedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(), // 3 days ago
-    responseCount: 120,
-  },
-  {
-    id: "form-3",
-    title: "Event Registration Form",
-    description: "Register attendees for the upcoming annual conference.",
-    fields: [],
-    createdBy: "user-2",
-    createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(), // 10 days ago
-    updatedAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
-    responseCount: 30,
-  },
-];
+import { getMockForms, deleteMockForm } from "@/lib/mockFormStore";
+import { useToast } from "@/hooks/use-toast";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 export default function DashboardPage() {
   const [forms, setForms] = useState<Form[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { toast } = useToast();
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [formToDeleteId, setFormToDeleteId] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulate fetching forms
-    setTimeout(() => {
-      setForms(mockForms);
-      setIsLoading(false);
-    }, 1000);
+    setIsLoading(true);
+    setForms(getMockForms());
+    setIsLoading(false);
   }, []);
+
+  const handleDeleteClick = (formId: string) => {
+    setFormToDeleteId(formId);
+    setIsAlertOpen(true);
+  };
+
+  const confirmDelete = () => {
+    if (formToDeleteId) {
+      deleteMockForm(formToDeleteId);
+      setForms(prevForms => prevForms.filter(form => form.id !== formToDeleteId));
+      toast({ title: "Form Deleted", description: "The form has been successfully deleted." });
+      setFormToDeleteId(null);
+    }
+    setIsAlertOpen(false);
+  };
 
   return (
     <div className="container mx-auto py-8">
@@ -128,7 +123,7 @@ export default function DashboardPage() {
                     <Link href={`/forms/${form.id}/responses`}><BarChartBig className="h-4 w-4" /></Link>
                   </Button>
                 </div>
-                 <Button variant="ghost" size="sm" className="text-destructive hover:text-destructive hover:bg-destructive/10" title="Delete Form">
+                 <Button variant="ghost" size="sm" className="text-destructive hover:text-destructive hover:bg-destructive/10" title="Delete Form" onClick={() => handleDeleteClick(form.id)}>
                     <Trash2 className="h-4 w-4" />
                   </Button>
               </CardFooter>
@@ -136,7 +131,23 @@ export default function DashboardPage() {
           ))}
         </div>
       )}
+      <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete the form
+              and all its associated responses.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setIsAlertOpen(false)}>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
-

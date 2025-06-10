@@ -1,3 +1,4 @@
+
 "use client";
 
 import { FormFiller } from "@/components/forms/FormFiller";
@@ -5,39 +6,14 @@ import type { Form, FormResponseData } from "@/types";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getMockFormById } from "@/lib/mockFormStore"; // Use centralized store
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertTriangle } from "lucide-react";
 
-// Mock form definitions - in a real app, fetch this based on formId
-const mockForms: Record<string, Form> = {
-  "form-1": {
-    id: "form-1",
-    title: "Customer Feedback Survey",
-    description: "We value your opinion! Please take a few moments to share your feedback with us. Your responses will help us improve our services.",
-    fields: [
-      { id: "field-name", label: "Full Name", type: "text", required: true, placeholder: "E.g., John Doe" },
-      { id: "field-email", label: "Email Address", type: "text", required: true, placeholder: "you@example.com" },
-      { id: "field-rating", label: "Overall Satisfaction (1-5)", type: "number", required: true, placeholder: "Enter a number between 1 and 5" },
-      { 
-        id: "field-service", 
-        label: "Which service did you use?", 
-        type: "dropdown", 
-        required: true,
-        options: [
-          { id: "opt-service-a", label: "Service A", value: "service_a" },
-          { id: "opt-service-b", label: "Service B", value: "service_b" },
-          { id: "opt-service-c", label: "Service C", value: "service_c" },
-        ]
-      },
-      { id: "field-comments", label: "Additional Comments", type: "text", required: false, placeholder: "Any other thoughts or suggestions..." },
-    ],
-    createdBy: "user-1",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-};
-
-// Mock submit function
+// Mock submit function - this would interact with a responses store in a real app
 const mockSubmitResponse = async (responseData: FormResponseData) => {
   console.log("Submitting response (mock):", responseData);
+  // In a real app, save responseData associated with formId and userId
   await new Promise(resolve => setTimeout(resolve, 1000));
 };
 
@@ -51,16 +27,23 @@ export default function FillFormPage() {
   const formId = params.formId as string;
   const [formDefinition, setFormDefinition] = useState<Form | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (formId) {
-      // Simulate fetching form definition
-      setTimeout(() => {
-        const foundForm = mockForms[formId];
-        setFormDefinition(foundForm || null);
+      setIsLoading(true);
+      // Simulate fetching form definition from localStorage store
+      setTimeout(() => { // Keep timeout for realistic loading feel
+        const foundForm = getMockFormById(formId);
+        if (foundForm) {
+          setFormDefinition(foundForm);
+        } else {
+          setError("Form definition not found.");
+        }
         setIsLoading(false);
-      }, 500);
+      }, 200); // Reduced delay
     } else {
+      setError("No form ID provided.");
       setIsLoading(false);
     }
   }, [formId]);
@@ -83,8 +66,14 @@ export default function FillFormPage() {
     );
   }
 
-  if (!formDefinition) {
-    return <div className="container mx-auto py-8 text-center text-xl">Form not found.</div>;
+  if (error || !formDefinition) {
+    return (
+      <Alert variant="destructive" className="container mx-auto my-8">
+        <AlertTriangle className="h-4 w-4" />
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>{error || "Form not found. It might have been deleted or the ID is incorrect."}</AlertDescription>
+      </Alert>
+    );
   }
 
   return (
@@ -92,7 +81,7 @@ export default function FillFormPage() {
       <FormFiller 
         formDefinition={formDefinition} 
         onSubmit={mockSubmitResponse}
-        onFieldChange={mockFieldChange} // For real-time collaboration
+        onFieldChange={mockFieldChange} 
       />
     </div>
   );

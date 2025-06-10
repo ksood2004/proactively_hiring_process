@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { Form, FormField, FieldType } from "@/types";
@@ -8,21 +9,21 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { FormFieldCreator } from "./FormFieldCreator";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { PlusCircle, Save, FileText, HashIcon, ChevronDownSquare } from "lucide-react";
+import { PlusCircle, Save, FileText, HashIcon, ChevronDownSquare, Loader2 } from "lucide-react"; // Added Loader2
 import { useToast } from "@/hooks/use-toast";
-import { useAuth } from "@/contexts/AuthContext"; // To get current user for createdBy
+import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 
 interface FormBuilderProps {
-  initialForm?: Form; // For editing existing forms
-  onSave: (form: Form) => Promise<void>; // Async to simulate API call
+  initialForm?: Form;
+  onSave: (form: Form) => Promise<void>;
 }
 
 const generateId = () => `id-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
 
 export function FormBuilder({ initialForm, onSave }: FormBuilderProps) {
   const { user } = useAuth();
-  const router = useRouter();
+  const router = useRouter(); // useRouter is kept but not used for redirect here, handled by parent page
   const [formTitle, setFormTitle] = useState(initialForm?.title || "");
   const [formDescription, setFormDescription] = useState(initialForm?.description || "");
   const [fields, setFields] = useState<FormField[]>(initialForm?.fields || []);
@@ -34,6 +35,11 @@ export function FormBuilder({ initialForm, onSave }: FormBuilderProps) {
       setFormTitle(initialForm.title);
       setFormDescription(initialForm.description || "");
       setFields(initialForm.fields);
+    } else {
+      // Reset for new form
+      setFormTitle("");
+      setFormDescription("");
+      setFields([]);
     }
   }, [initialForm]);
 
@@ -44,7 +50,7 @@ export function FormBuilder({ initialForm, onSave }: FormBuilderProps) {
       type,
       required: false,
       placeholder: "",
-      ...(type === "dropdown" && { options: [] }),
+      ...(type === "dropdown" && { options: [{id: generateId(), label: "", value: ""}] }), // Add one default option for dropdown
     };
     setFields([...fields, newField]);
   };
@@ -62,6 +68,16 @@ export function FormBuilder({ initialForm, onSave }: FormBuilderProps) {
       toast({ title: "Validation Error", description: "Form title is required.", variant: "destructive" });
       return;
     }
+    if (fields.some(f => !f.label.trim())) {
+      toast({ title: "Validation Error", description: "All field labels are required.", variant: "destructive" });
+      return;
+    }
+    if (fields.some(f => f.type === 'dropdown' && (!f.options || f.options.length === 0 || f.options.some(opt => !opt.label.trim() || !opt.value.trim())))) {
+      toast({ title: "Validation Error", description: "All dropdown options must have both a label and a value.", variant: "destructive" });
+      return;
+    }
+
+
     if (!user) {
       toast({ title: "Authentication Error", description: "You must be logged in to save a form.", variant: "destructive" });
       return;
@@ -76,17 +92,14 @@ export function FormBuilder({ initialForm, onSave }: FormBuilderProps) {
       createdBy: user.uid,
       createdAt: initialForm?.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
+      responseCount: initialForm?.responseCount || 0, // Preserve or initialize response count
     };
 
     try {
-      await onSave(formToSave); // Call the provided onSave prop
-      toast({ title: "Form Saved!", description: `"${formTitle}" has been saved successfully.` });
-      // Potentially redirect or clear form
-      // For this example, let's redirect to dashboard after save
-      router.push('/dashboard');
+      await onSave(formToSave); // onSave prop will handle toast and redirect
     } catch (error) {
-      console.error("Failed to save form:", error);
-      toast({ title: "Save Failed", description: "Could not save the form. Please try again.", variant: "destructive" });
+      // Error is handled by the onSave prop in the parent page for specific context
+      console.error("FormBuilder: Save failed, error bubbled up:", error);
     } finally {
       setIsSaving(false);
     }
@@ -130,7 +143,7 @@ export function FormBuilder({ initialForm, onSave }: FormBuilderProps) {
       <Card>
         <CardHeader>
           <CardTitle className="text-xl font-headline">Form Fields</CardTitle>
-          <CardDescription>Add and configure the fields for your form.</CardDescription>
+          <CardDescription>Add and configure the fields for your form. All fields require a label. Dropdown options require a label and a value.</CardDescription>
         </CardHeader>
         <CardContent>
           {fields.length === 0 && (
@@ -164,7 +177,7 @@ export function FormBuilder({ initialForm, onSave }: FormBuilderProps) {
 
       <div className="flex justify-end mt-8">
         <Button size="lg" onClick={handleSaveForm} disabled={isSaving} className="shadow-lg hover:shadow-primary/40 transition-shadow">
-          {isSaving ? <Save className="mr-2 h-5 w-5 animate-spin" /> : <Save className="mr-2 h-5 w-5" />}
+          {isSaving ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Save className="mr-2 h-5 w-5" />}
           {initialForm ? "Update Form" : "Save Form"}
         </Button>
       </div>
