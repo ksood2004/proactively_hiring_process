@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { FilePlus2, Edit3, Eye, BarChartBig, Trash2, ListFilter } from "lucide-react";
+import { FilePlus2, Edit3, Eye, BarChartBig, Trash2, ListFilter, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import type { Form } from "@/types";
@@ -52,6 +52,22 @@ export default function MyFormsPage() {
       setFormToDeleteId(null);
     }
     setIsAlertOpen(false);
+  };
+
+  const handleShareClick = async (formId: string) => {
+    const fillLink = `${window.location.origin}/forms/${formId}/fill`;
+    try {
+      await navigator.clipboard.writeText(fillLink);
+      toast({ title: "Link Copied!", description: "Form link copied to clipboard." });
+    } catch (err) {
+      console.error("Failed to copy link: ", err);
+      toast({
+        title: "Copy Failed",
+        description: `Could not copy link. Please copy manually: ${fillLink}`,
+        variant: "destructive",
+        duration: 9000,
+      });
+    }
   };
 
   return (
@@ -127,6 +143,9 @@ export default function MyFormsPage() {
                   </Button>
                    <Button variant="outline" size="sm" asChild title="View Responses">
                     <Link href={`/forms/${form.id}/responses`}><BarChartBig className="h-4 w-4" /></Link>
+                  </Button>
+                  <Button variant="outline" size="sm" title="Share Form" onClick={() => handleShareClick(form.id)}>
+                    <Share2 className="h-4 w-4" />
                   </Button>
                 </div>
                  <Button variant="ghost" size="sm" className="text-destructive hover:text-destructive hover:bg-destructive/10" title="Delete Form" onClick={() => handleDeleteClick(form.id)}>
