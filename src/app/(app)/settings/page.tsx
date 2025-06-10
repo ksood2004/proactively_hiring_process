@@ -126,9 +126,14 @@ export default function SettingsPage() {
                       <SelectItem value="ja">日本語 (Japanese)</SelectItem>
                       <SelectItem value="zh">中文 (Chinese)</SelectItem>
                       <SelectItem value="hi">हिन्दी (Hindi)</SelectItem>
+                      <SelectItem value="pt">Português (Portuguese)</SelectItem>
+                      <SelectItem value="ru">Русский (Russian)</SelectItem>
+                      <SelectItem value="ar">العربية (Arabic)</SelectItem>
                     </SelectContent>
                   </Select>
-                   <p className="text-xs text-muted-foreground">Choose your preferred language for the application interface.</p>
+                   <p className="text-xs text-muted-foreground">
+                    Select your preferred language. Note: This setting is for future native translation support. For immediate page translation, please use the Google Translate widget (usually at the screen's bottom-right).
+                   </p>
                 </div>
               </CardContent>
             </Card>
