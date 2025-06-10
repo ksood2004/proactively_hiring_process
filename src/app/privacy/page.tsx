@@ -39,9 +39,6 @@ export default function PrivacyPolicyPage() {
                 <li>Send you emails</li>
                 <li>Find and prevent fraud</li>
             </ul>
-            <p className="mt-8 text-center text-muted-foreground">
-              (This is a placeholder. You should replace this with your actual Privacy Policy.)
-            </p>
           </CardContent>
         </Card>
          <div className="text-center mt-8">
