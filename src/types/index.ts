@@ -23,6 +23,7 @@ export interface Form {
   createdBy: string; // userId or identifier
   createdAt: string; // ISO date string
   updatedAt: string; // ISO date string
+  responseCount?: number; // Added for mock data consistency
 }
 
 export interface FormResponseData {
@@ -39,3 +40,4 @@ export interface FormResponse {
 // For AI insights
 export type AIFormSchema = Record<string, { label: string; type: FieldType }>;
 export type AIFormResponse = Record<string, any>;
+

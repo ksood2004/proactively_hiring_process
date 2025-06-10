@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ const mockForms: Form[] = [
     createdBy: "user-1",
     createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), // 2 days ago
     updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+    responseCount: 75,
   },
   {
     id: "form-2",
@@ -27,6 +29,7 @@ const mockForms: Form[] = [
     createdBy: "user-1",
     createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(), // 5 days ago
     updatedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(), // 3 days ago
+    responseCount: 120,
   },
   {
     id: "form-3",
@@ -36,6 +39,7 @@ const mockForms: Form[] = [
     createdBy: "user-2",
     createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(), // 10 days ago
     updatedAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
+    responseCount: 30,
   },
 ];
 
@@ -110,7 +114,7 @@ export default function DashboardPage() {
               <CardContent className="text-sm text-muted-foreground">
                 <p>Created: {new Date(form.createdAt).toLocaleDateString()}</p>
                 <p>Last Updated: {new Date(form.updatedAt).toLocaleDateString()}</p>
-                <p>Responses: {Math.floor(Math.random() * 100)}</p> {/* Mocked response count */}
+                <p>Responses: {form.responseCount ?? 0}</p>
               </CardContent>
               <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-2 pt-4 border-t">
                 <div className="flex gap-2 flex-wrap">
@@ -135,3 +139,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+
