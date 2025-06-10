@@ -1,10 +1,10 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { CheckCircle, Zap, Users, Lightbulb, FilePlus2, Mail, Phone, ScrollText, ShieldAlert } from "lucide-react";
+import { CheckCircle, Zap, Users, Lightbulb, FilePlus2, Mail, Phone, ScrollText, ShieldAlert, FileEdit, Share2, Database, TrendingUp, BookOpen, Building } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
-import Image from "next/image"; // Keep Image import if used elsewhere, though not for this specific change.
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Added for the new content block
+import Image from "next/image";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 export default function HomePage() {
   return (
@@ -38,7 +38,6 @@ export default function HomePage() {
                   </Button>
                 </div>
               </div>
-              {/* Replaced Image with a content block */}
               <div className="mx-auto sm:w-full lg:order-last flex flex-col justify-center space-y-4 rounded-xl bg-card p-6 md:p-8 shadow-xl border">
                 <h3 className="text-2xl font-bold font-headline text-primary text-center mb-2 md:mb-4">
                   Why Choose FormFlow?
@@ -102,6 +101,83 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* User Guide Section */}
+        <section id="user-guide" className="w-full py-12 md:py-24 lg:py-32 bg-background">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary font-medium">
+                  User Guide
+                </div>
+                <h2 className="text-3xl font-bold font-headline tracking-tighter sm:text-5xl">
+                  How FormFlow Works
+                </h2>
+                <p className="max-w-[900px] text-foreground/70 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Follow these simple steps to make the most out of FormFlow.
+                </p>
+              </div>
+            </div>
+            <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4 lg:max-w-none mt-12">
+              <FeatureCard
+                icon={<FileEdit className="h-8 w-8 text-primary" />}
+                title="1. Create Your Form"
+                description="Use our intuitive drag-and-drop builder to design beautiful and effective forms in minutes."
+              />
+              <FeatureCard
+                icon={<Share2 className="h-8 w-8 text-primary" />}
+                title="2. Share with Ease"
+                description="Distribute your forms via direct links, email invitations, or embed them on your website."
+              />
+              <FeatureCard
+                icon={<Database className="h-8 w-8 text-primary" />}
+                title="3. Collect Responses"
+                description="Gather submissions in real-time and manage your data centrally in your dashboard."
+              />
+              <FeatureCard
+                icon={<TrendingUp className="h-8 w-8 text-primary" />}
+                title="4. Analyze & Act"
+                description="Leverage AI-powered insights and analytics to understand trends and make data-driven decisions."
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Our Story Section */}
+        <section id="about-us" className="w-full py-12 md:py-24 lg:py-32 bg-muted/50">
+          <div className="container px-4 md:px-6">
+            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+              <div className="space-y-4">
+                <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary font-medium">
+                  Our Story
+                </div>
+                <h2 className="text-3xl font-bold font-headline tracking-tighter sm:text-4xl md:text-5xl">
+                  Empowering Data Collection
+                </h2>
+                <p className="max-w-[700px] text-foreground/70 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  At FormFlow, we believe that collecting data should be simple, intelligent, and collaborative. We started with a vision to transform how individuals and businesses gather information, moving beyond clunky spreadsheets and cumbersome tools.
+                </p>
+                <p className="max-w-[700px] text-foreground/70 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Our platform is built on the principles of user-friendliness, powerful AI capabilities, and seamless teamwork. We are passionate about helping you unlock the potential in your data, making every response count.
+                </p>
+                 <Button asChild variant="outline">
+                  <Link href="/contact">Learn More About Us</Link>
+                </Button>
+              </div>
+              <div className="flex justify-center">
+                <Image
+                  src="https://placehold.co/500x350.png"
+                  width={500}
+                  height={350}
+                  alt="Our Team Working"
+                  data-ai-hint="diverse team collaboration"
+                  className="mx-auto aspect-[4/3] overflow-hidden rounded-xl object-cover object-center sm:w-full shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
       <Footer />
     </div>
