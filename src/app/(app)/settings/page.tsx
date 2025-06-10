@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react"; // Added useEffect
 import { useRouter } from "next/navigation"; 
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
@@ -13,6 +13,7 @@ import { Switch } from "@/components/ui/switch";
 import { Settings, UserCircle, Save, LockKeyhole, LogOut, Bell, Mail, Palette, Languages } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
+import { useTheme } from "@/contexts/ThemeContext"; // Import useTheme
 import {
   Select,
   SelectContent,
@@ -25,6 +26,7 @@ export default function SettingsPage() {
   const { user, logout } = useAuth(); 
   const { toast } = useToast();
   const router = useRouter(); 
+  const { theme, setTheme } = useTheme(); // Use theme context
 
   // Profile States
   const [displayName, setDisplayName] = useState(user?.displayName || "");
@@ -33,18 +35,27 @@ export default function SettingsPage() {
   // Notification Preferences States
   const [emailOnNewResponse, setEmailOnNewResponse] = useState(true);
   const [emailOnAIInsight, setEmailOnAIInsight] = useState(false);
-
-  // Appearance State
-  const [theme, setTheme] = useState("system"); // "light", "dark", "system"
   
-  // Language State
-  const [language, setLanguage] = useState("en"); // "en", "es", "fr"
+  // Language State - initialize from localStorage if available, or default
+  const [language, setLanguage] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('language') || 'en';
+    }
+    return 'en';
+  });
+
+  // Persist language to localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('language', language);
+    }
+  }, [language]);
 
 
   const handleSaveSettings = (e: React.FormEvent) => {
     e.preventDefault();
     // Mock save action
-    console.log("Saving settings:", { displayName, email, emailOnNewResponse, emailOnAIInsight, theme, language });
+    console.log("Saving settings:", { displayName, email, emailOnNewResponse, emailOnAIInsight, selectedTheme: theme, language });
     toast({ title: "Settings Saved", description: "Your profile and preferences have been updated." });
   };
 
@@ -111,6 +122,10 @@ export default function SettingsPage() {
                       <SelectItem value="en">English</SelectItem>
                       <SelectItem value="es">Español (Spanish)</SelectItem>
                       <SelectItem value="fr">Français (French)</SelectItem>
+                      <SelectItem value="de">Deutsch (German)</SelectItem>
+                      <SelectItem value="ja">日本語 (Japanese)</SelectItem>
+                      <SelectItem value="zh">中文 (Chinese)</SelectItem>
+                      <SelectItem value="hi">हिन्दी (Hindi)</SelectItem>
                     </SelectContent>
                   </Select>
                    <p className="text-xs text-muted-foreground">Choose your preferred language for the application interface.</p>
@@ -126,7 +141,7 @@ export default function SettingsPage() {
               <CardContent className="space-y-4">
                 <div className="space-y-1">
                   <Label htmlFor="theme">Theme</Label>
-                  <Select value={theme} onValueChange={setTheme}>
+                  <Select value={theme} onValueChange={(value) => setTheme(value as "light" | "dark" | "system")}>
                     <SelectTrigger id="theme">
                       <SelectValue placeholder="Select theme" />
                     </SelectTrigger>
