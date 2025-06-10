@@ -17,7 +17,7 @@ import {
   SidebarInset,
   SidebarMenuSub,
   SidebarMenuSubButton,
-  SidebarMenuSubItem, // Added SidebarMenuSubItem
+  SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -34,7 +34,7 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 const AppLogo = () => (
-  <Link href="/dashboard" className="flex items-center gap-2 px-2">
+  <Link href="/" className="flex items-center gap-2 px-2">
      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" className="h-8 w-8 text-sidebar-primary">
       <rect width="256" height="256" fill="none"></rect>
       <path d="M88,134.9,175.2,200A16,16,0,0,0,200,185.1V60a16,16,0,0,0-16-16H64A16,16,0,0,0,48,60V188a16,16,0,0,0,24.8,13.1Z"
