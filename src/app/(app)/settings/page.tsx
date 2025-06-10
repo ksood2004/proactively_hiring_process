@@ -1,16 +1,20 @@
+
 "use client";
 
 import Link from "next/link";
+import { useState } from "react"; // Added useState import
 import { Button } from "@/components/ui/button";
-import { Card, CardDescription, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardDescription, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Settings, UserCircle, Save } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/hooks/use-toast"; // Added useToast import
 
 export default function SettingsPage() {
   const { user } = useAuth();
+  const { toast } = useToast(); // Initialized useToast
 
   // Mock state for settings form
   // In a real app, this would be fetched and updated
@@ -80,9 +84,3 @@ export default function SettingsPage() {
     </div>
   );
 }
-// Need to import useState for this component. Adding it here for completeness of thought.
-// import { useState } from "react";
-// And useToast
-// import { useToast } from "@/hooks/use-toast";
-// This was a quick addition, should actually be `useState` import. The linter would catch this.
-// The full file content should import `useState` from `react`.

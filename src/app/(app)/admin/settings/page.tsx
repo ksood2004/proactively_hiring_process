@@ -1,14 +1,19 @@
+
 "use client";
 
 import Link from "next/link";
+import { useState } from "react"; // Added useState import
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Settings, ShieldCheck, Save } from "lucide-react";
+import { useToast } from "@/hooks/use-toast"; // Added useToast import
 
 export default function AdminSettingsPage() {
+  const { toast } = useToast(); // Initialized useToast
+
   // Mock states for admin settings
   // In a real app, these would be fetched and persisted
   const [allowPublicSignup, setAllowPublicSignup] = useState(true);
@@ -89,7 +94,3 @@ export default function AdminSettingsPage() {
     </div>
   );
 }
-// Need to import useState for this component.
-// import { useState } from "react";
-// And useToast for notifications
-// import { useToast } from "@/hooks/use-toast";
