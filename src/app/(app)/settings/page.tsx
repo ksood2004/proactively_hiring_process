@@ -132,7 +132,7 @@ export default function SettingsPage() {
                     </SelectContent>
                   </Select>
                    <p className="text-xs text-muted-foreground">
-                    Select your preferred language. Note: This setting is for future native translation support. For immediate page translation, please use the Google Translate widget (usually at the screen's bottom-right).
+                    Select your preferred language. Note: This setting is for future native translation support. The application interface will not change based on this selection yet.
                    </p>
                 </div>
               </CardContent>

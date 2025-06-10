@@ -1,7 +1,7 @@
 
 import type { Metadata } from 'next';
 import { Inter, Source_Code_Pro } from 'next/font/google';
-import Script from 'next/script'; // Import Script component
+// import Script from 'next/script'; // Script component no longer needed for Google Translate
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { AuthProvider } from '@/contexts/AuthContext';
@@ -41,26 +41,14 @@ export default function RootLayout({
         <AuthProvider>
           <ThemeProvider>
             <TooltipProvider>
-              <div id="google_translate_element" style={{ position: 'fixed', bottom: '1rem', right: '1rem', zIndex: 1000 }}></div>
+              {/* Google Translate widget div removed */}
               {children}
               <Toaster />
             </TooltipProvider>
           </ThemeProvider>
         </AuthProvider>
 
-        <Script id="google-translate-init" strategy="afterInteractive">
-          {`
-            function googleTranslateElementInit() {
-              if (typeof google !== 'undefined' && google.translate && google.translate.TranslateElement) {
-                new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-              }
-            }
-          `}
-        </Script>
-        <Script
-          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-          strategy="afterInteractive"
-        />
+        {/* Google Translate script tags removed */}
       </body>
     </html>
   );
