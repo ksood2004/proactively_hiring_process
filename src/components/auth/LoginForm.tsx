@@ -50,7 +50,7 @@ export function LoginForm() {
               strokeLinejoin="round" strokeWidth="16"></polyline>
           </svg>
         </div>
-        <CardTitle className="text-3xl font-headline">Welcome Back to Proactively FormFlow</CardTitle>
+        <CardTitle className="text-3xl font-headline">Welcome Back to FormFlow</CardTitle>
         <CardDescription>Enter your credentials to access your account</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>

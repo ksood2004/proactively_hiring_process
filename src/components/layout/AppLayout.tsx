@@ -43,7 +43,7 @@ const AppLogo = () => (
         strokeLinejoin="round" strokeWidth="16"></polyline>
     </svg>
     <h1 className="text-xl font-bold font-headline text-sidebar-foreground group-data-[collapsible=icon]:hidden">
-      Proactively FormFlow
+      FormFlow
     </h1>
   </Link>
 );
