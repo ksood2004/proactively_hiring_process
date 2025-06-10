@@ -20,7 +20,7 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 export const metadata: Metadata = {
-  title: 'FormFlow - Collaborative Form Building',
+  title: 'Proactively FormFlow - Collaborative Form Building',
   description: 'Create, share, and collaborate on forms in real-time with AI-powered insights.',
 };
 

@@ -3,7 +3,7 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { CheckCircle, Zap, Users, Lightbulb, FilePlus2, Mail, Phone, ScrollText, ShieldAlert, FileEdit, Share2, Database, TrendingUp, BookOpen, Building, CircleCheckBig, Briefcase } from "lucide-react";
+import { CheckCircle, Zap, Users, Lightbulb, FilePlus2, Mail, Phone, ScrollText, ShieldAlert, FileEdit, Share2, Database, TrendingUp, BookOpen, Building, CircleCheckBig, Briefcase, Info } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
@@ -20,10 +20,10 @@ export default function HomePage() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-4xl font-bold font-headline tracking-tighter sm:text-5xl xl:text-6xl/none text-primary">
-                    Build, Collaborate, Innovate with FormFlow
+                    Build, Collaborate, Innovate with Proactively FormFlow
                   </h1>
                   <p className="max-w-[600px] text-foreground/80 md:text-xl">
-                    Create dynamic forms, collaborate in real-time, and gain AI-powered insights from your data. Streamline your workflow with FormFlow.
+                    Create dynamic forms, collaborate in real-time, and gain AI-powered insights from your data. Streamline your workflow with Proactively FormFlow.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -43,7 +43,7 @@ export default function HomePage() {
               <Card className="mx-auto sm:w-full lg:order-last flex flex-col justify-center space-y-4 rounded-xl bg-card p-6 md:p-8 shadow-xl border">
                 <CardHeader className="p-0 items-center text-center">
                   <CardTitle className="text-2xl font-bold font-headline text-primary mb-2 md:mb-4">
-                    Why Choose FormFlow?
+                    Why Choose Proactively FormFlow?
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-0 space-y-3 md:space-y-4 text-foreground/80">
@@ -82,7 +82,7 @@ export default function HomePage() {
                   Everything You Need for Effective Forms
                 </h2>
                 <p className="max-w-[900px] text-foreground/70 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  From intuitive form building to advanced AI insights, FormFlow empowers your team.
+                  From intuitive form building to advanced AI insights, Proactively FormFlow empowers your team.
                 </p>
               </div>
             </div>
@@ -115,10 +115,10 @@ export default function HomePage() {
                   User Guide
                 </div>
                 <h2 className="text-3xl font-bold font-headline tracking-tighter sm:text-5xl">
-                  How FormFlow Works
+                  How Proactively FormFlow Works
                 </h2>
                 <p className="max-w-[900px] text-foreground/70 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Follow these simple steps to make the most out of FormFlow.
+                  Follow these simple steps to make the most out of Proactively FormFlow.
                 </p>
               </div>
             </div>
@@ -159,7 +159,7 @@ export default function HomePage() {
                   Join Our Innovative Team
                 </h2>
                 <p className="max-w-[700px] text-foreground/70 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  At FormFlow, we're passionate about revolutionizing data collection and collaboration. We foster a dynamic and inclusive environment where creativity and innovation thrive. If you're looking to make an impact and grow with a forward-thinking company, explore our open positions.
+                  At Proactively FormFlow, we're passionate about revolutionizing data collection and collaboration. We foster a dynamic and inclusive environment where creativity and innovation thrive. If you're looking to make an impact and grow with a forward-thinking company, explore our open positions.
                 </p>
                 <p className="max-w-[700px] text-foreground/70 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   We value teamwork, continuous learning, and a commitment to excellence. Join us in shaping the future of forms!
@@ -174,19 +174,19 @@ export default function HomePage() {
                   title="Senior Software Engineer"
                   department="Engineering"
                   location="Headquarters"
-                  description="Lead the development of core FormFlow features, mentor junior engineers, and drive technical excellence. Expertise in Next.js, React, and Genkit required."
+                  description="Lead the development of core Proactively FormFlow features, mentor junior engineers, and drive technical excellence. Expertise in Next.js, React, and Genkit required."
                 />
                 <JobOpeningCard
                   title="Product Manager - AI"
                   department="Product"
                   location="Headquarters"
-                  description="Define and execute the product strategy for AI-driven features within FormFlow. Collaborate with design and engineering to deliver impactful solutions."
+                  description="Define and execute the product strategy for AI-driven features within Proactively FormFlow. Collaborate with design and engineering to deliver impactful solutions."
                 />
                 <JobOpeningCard
                   title="Marketing Specialist"
                   department="Marketing"
                   location="Remote"
-                  description="Develop and implement marketing campaigns to grow FormFlow's user base. Strong skills in digital marketing, content creation, and analytics needed."
+                  description="Develop and implement marketing campaigns to grow Proactively FormFlow's user base. Strong skills in digital marketing, content creation, and analytics needed."
                 />
               </div>
             </div>
@@ -251,8 +251,8 @@ function Footer() {
     <footer className="py-8 md:py-12 border-t bg-background">
       <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-foreground/70">
         <div>
-          <h4 className="font-semibold text-foreground mb-2">FormFlow</h4>
-          <p>&copy; {new Date().getFullYear()} FormFlow. All rights reserved.</p>
+          <h4 className="font-semibold text-foreground mb-2">Proactively FormFlow</h4>
+          <p>&copy; {new Date().getFullYear()} Proactively FormFlow. All rights reserved.</p>
         </div>
         <div>
           <h4 className="font-semibold text-foreground mb-2">Legal</h4>
