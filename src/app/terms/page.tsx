@@ -15,12 +15,12 @@ export default function TermsOfServicePage() {
             <ScrollText className="h-16 w-16 text-primary mb-4" />
             <CardTitle className="text-3xl font-headline">Terms of Service</CardTitle>
             <CardDescription className="text-muted-foreground max-w-2xl mx-auto">
-              Welcome to FormFlow! These terms and conditions outline the rules and regulations for the use of FormFlow's Website.
+              Welcome to Proactively FormFlow! These terms and conditions outline the rules and regulations for the use of Proactively FormFlow's Website.
             </CardDescription>
           </CardHeader>
           <CardContent className="max-w-4xl mx-auto space-y-4 text-foreground/80">
             <p>
-              By accessing this website we assume you accept these terms and conditions. Do not continue to use FormFlow if you do not agree to take all of the terms and conditions stated on this page.
+              By accessing this website we assume you accept these terms and conditions. Do not continue to use Proactively FormFlow if you do not agree to take all of the terms and conditions stated on this page.
             </p>
             <h2 className="font-headline text-xl font-semibold text-foreground mt-6 mb-3">Content Liability</h2>
             <p>

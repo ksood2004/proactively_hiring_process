@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
             <ShieldAlert className="h-16 w-16 text-primary mb-4" />
             <CardTitle className="text-3xl font-headline">Privacy Policy</CardTitle>
             <CardDescription className="text-muted-foreground max-w-2xl mx-auto">
-              Your privacy is important to us. It is FormFlow's policy to respect your privacy regarding any information we may collect from you across our website.
+              Your privacy is important to us. It is Proactively FormFlow's policy to respect your privacy regarding any information we may collect from you across our website.
             </CardDescription>
           </CardHeader>
           <CardContent className="max-w-4xl mx-auto space-y-4 text-foreground/80">

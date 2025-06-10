@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import { Inter, Source_Code_Pro } from 'next/font/google';
 import './globals.css';
@@ -17,7 +18,7 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 export const metadata: Metadata = {
-  title: 'FormFlow - Collaborative Form Building',
+  title: 'Proactively FormFlow - Collaborative Form Building',
   description: 'Create, share, and collaborate on forms in real-time with AI-powered insights.',
 };
 

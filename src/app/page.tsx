@@ -17,10 +17,10 @@ export default function HomePage() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-4xl font-bold font-headline tracking-tighter sm:text-5xl xl:text-6xl/none text-primary">
-                    Build, Collaborate, Innovate with FormFlow
+                    Build, Collaborate, Innovate with Proactively FormFlow
                   </h1>
                   <p className="max-w-[600px] text-foreground/80 md:text-xl">
-                    Create dynamic forms, collaborate in real-time, and gain AI-powered insights from your data. Streamline your workflow with FormFlow.
+                    Create dynamic forms, collaborate in real-time, and gain AI-powered insights from your data. Streamline your workflow with Proactively FormFlow.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -61,7 +61,7 @@ export default function HomePage() {
                   Everything You Need for Effective Forms
                 </h2>
                 <p className="max-w-[900px] text-foreground/70 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  From intuitive form building to advanced AI insights, FormFlow empowers your team.
+                  From intuitive form building to advanced AI insights, Proactively FormFlow empowers your team.
                 </p>
               </div>
             </div>
@@ -113,8 +113,8 @@ function Footer() {
     <footer className="py-8 md:py-12 border-t bg-background">
       <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-foreground/70">
         <div>
-          <h4 className="font-semibold text-foreground mb-2">FormFlow</h4>
-          <p>&copy; {new Date().getFullYear()} FormFlow. All rights reserved.</p>
+          <h4 className="font-semibold text-foreground mb-2">Proactively FormFlow</h4>
+          <p>&copy; {new Date().getFullYear()} Proactively FormFlow. All rights reserved.</p>
         </div>
         <div>
           <h4 className="font-semibold text-foreground mb-2">Legal</h4>

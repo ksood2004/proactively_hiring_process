@@ -36,7 +36,7 @@ export function Navbar() {
             <polyline points="88 134.9 88 48 176 48" fill="none" stroke="currentColor" strokeLinecap="round"
               strokeLinejoin="round" strokeWidth="16"></polyline>
           </svg>
-          <span className="font-bold font-headline text-xl">FormFlow</span>
+          <span className="font-bold font-headline text-xl">Proactively FormFlow</span>
         </Link>
         <nav className="flex flex-1 items-center space-x-4">
           {user && (

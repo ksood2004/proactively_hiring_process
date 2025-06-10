@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -34,7 +35,7 @@ export function SignupForm() {
     }
     try {
       await signup(email, password);
-      toast({ title: "Signup Successful", description: "Welcome to FormFlow! Please login." });
+      toast({ title: "Signup Successful", description: "Welcome to Proactively FormFlow! Please login." });
       // router.push('/dashboard'); // Or redirect to login, or auto-login based on auth setup
       router.push('/login');
     } catch (error) {
@@ -55,7 +56,7 @@ export function SignupForm() {
               strokeLinejoin="round" strokeWidth="16"></polyline>
           </svg>
         </div>
-        <CardTitle className="text-3xl font-headline">Create your FormFlow Account</CardTitle>
+        <CardTitle className="text-3xl font-headline">Create your Proactively FormFlow Account</CardTitle>
         <CardDescription>Join us to build and collaborate on forms effortlessly</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
