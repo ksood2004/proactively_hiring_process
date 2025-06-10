@@ -1,3 +1,4 @@
+
 export type FieldType = "text" | "number" | "dropdown";
 
 export interface FormFieldOption {
@@ -40,4 +41,16 @@ export interface FormResponse {
 // For AI insights
 export type AIFormSchema = Record<string, { label: string; type: FieldType }>;
 export type AIFormResponse = Record<string, any>;
+
+// For Candidate Application
+export interface CandidateApplicationData {
+  applyingFor?: string;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  degree: string;
+  resume?: FileList | null; // Changed to FileList to match input type="file"
+  coverLetter?: string;
+}
 

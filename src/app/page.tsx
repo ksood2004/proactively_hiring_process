@@ -1,4 +1,6 @@
 
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CheckCircle, Zap, Users, Lightbulb, FilePlus2, Mail, Phone, ScrollText, ShieldAlert, FileEdit, Share2, Database, TrendingUp, BookOpen, Building, CircleCheckBig, Briefcase } from "lucide-react";
@@ -38,30 +40,32 @@ export default function HomePage() {
                   </Button>
                 </div>
               </div>
-              <div className="mx-auto sm:w-full lg:order-last flex flex-col justify-center space-y-4 rounded-xl bg-card p-6 md:p-8 shadow-xl border">
-                <h3 className="text-2xl font-bold font-headline text-primary text-center mb-2 md:mb-4">
-                  Why Choose FormFlow?
-                </h3>
-                <div className="space-y-3 md:space-y-4 text-foreground/80">
+              <Card className="mx-auto sm:w-full lg:order-last flex flex-col justify-center space-y-4 rounded-xl bg-card p-6 md:p-8 shadow-xl border">
+                <CardHeader className="p-0 items-center text-center">
+                  <CardTitle className="text-2xl font-bold font-headline text-primary mb-2 md:mb-4">
+                    Why Choose FormFlow?
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-0 space-y-3 md:space-y-4 text-foreground/80">
                   <div className="flex items-start">
                     <CircleCheckBig className="h-5 w-5 text-accent mr-2.5 mt-1 shrink-0" />
-                    <p><span className="font-semibold">Efficiency:</span> Streamline data collection and save valuable time for your team.</p>
+                    <p><span className="font-semibold">Efficiency:</span> Streamline data collection and save valuable time.</p>
                   </div>
                   <div className="flex items-start">
                     <Lightbulb className="h-5 w-5 text-accent mr-2.5 mt-1 shrink-0" />
-                    <p><span className="font-semibold">Insights:</span> Leverage AI to uncover trends and understand your data deeply.</p>
+                    <p><span className="font-semibold">Insights:</span> Leverage AI to uncover trends and understand your data.</p>
                   </div>
                   <div className="flex items-start">
                     <Users className="h-5 w-5 text-accent mr-2.5 mt-1 shrink-0" />
-                    <p><span className="font-semibold">Collaboration:</span> Work seamlessly with your team on forms in real-time.</p>
+                    <p><span className="font-semibold">Collaboration:</span> Work seamlessly with your team in real-time.</p>
                   </div>
-                </div>
-                <div className="mt-4 md:mt-6 text-center">
-                  <Button asChild variant="outline" size="sm" className="hover:shadow-md transition-shadow">
+                </CardContent>
+                <CardFooter className="p-0 mt-4 md:mt-6 text-center justify-center">
+                   <Button asChild variant="outline" size="sm" className="hover:shadow-md transition-shadow">
                     <Link href="/#key-features">Explore Features</Link>
                   </Button>
-                </div>
-              </div>
+                </CardFooter>
+              </Card>
             </div>
           </div>
         </section>
@@ -221,6 +225,7 @@ interface JobOpeningCardProps {
 }
 
 function JobOpeningCard({ title, department, location, description }: JobOpeningCardProps) {
+  const applyLink = `/apply?jobTitle=${encodeURIComponent(title)}&department=${encodeURIComponent(department)}&location=${encodeURIComponent(location)}`;
   return (
     <Card className="shadow-lg hover:shadow-xl transition-shadow">
       <CardHeader>
@@ -234,8 +239,7 @@ function JobOpeningCard({ title, department, location, description }: JobOpening
       </CardContent>
       <CardFooter>
         <Button asChild variant="secondary" className="shadow-sm hover:shadow-md">
-          {/* In a real app, this would link to a specific job application page */}
-          <Link href="#">Apply Now</Link>
+          <Link href={applyLink}>Apply Now</Link>
         </Button>
       </CardFooter>
     </Card>
